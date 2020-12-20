@@ -1,0 +1,40 @@
+Implementační soubory: myripsniffer.cpp, myripresponse.cpp, myriprequest.cpp, rip_defs.h
+
+Příkaz "make" přeloží všechny potřebné soubory, tak aby mohly být spuštěny pomocí příkazů
+definovaných níže.
+Pro správnou funkčnost je doporučeno spouštět všechny tři aplikace jako administrátor.
+
+------------MYRIPSNIFFER-------------
+
+./myripsniffer -i <rozhraní>
+	-i:   	<rozhraní> rozhraní, na kterém budou odchytávány pakety
+
+Aplikace odchytává RIPv1, RIPv2 a RIPng pakety na zadaném rozhraní, dokud není ukončena 
+ukončovacím signálem.
+Místo rozhraní lze zadat .pcap soubor.
+
+------------MYRIPRESPONSE-------------
+
+./myripresponse -i <rozhraní> -r <IPv6>/[16-128] {-n <IPv6>} {-m [0-16]} {-t [0-65535]} {-h}
+
+ -i		rozhraní, na které bude paket vyslán
+ -r		IPv6 adresa s maskou
+ -n		Next-hop adresa
+ -m		metrika, implicitně 1
+ -t		Route tag hodnota, implicitně 0
+ -h		Nápověda
+
+Aplikace vyšle RIPng response paket naplněný daty získanými ze vstupních parametrů.
+
+------------MYRIPREQUEST-------------
+
+./myriprequest -i <rozhraní> -r <IPv6>/[0-128] {-m [0-16]} {-t [0-65535]} {-h}
+
+ -i		rozhraní, na které bude paket vyslán
+ -r		IPv6 adresa s maskou
+ -m		metrika, implicitně 1
+ -t		Route tag hodnota, implicitně 0
+ -h		Nápověda
+
+Aplikace vyšle RIPng request paket naplněný daty získanými ze vstupních parametrů.
+
